@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>جمهورية ألمانيا الاتحادية - الدرس الرابع</title>
+<style>
+/* ===== DESKTOP BLOCK ===== */
+#desktop-block {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0a0a2e;
+  z-index: 999999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 40px;
+}
+#desktop-block .db-icon { font-size: 80px; margin-bottom: 20px; }
+#desktop-block h1 { color: #00d4ff; font-size: 28px; margin-bottom: 15px; font-family: Arial, sans-serif; }
+#desktop-block p { color: #c8c8e0; font-size: 16px; font-family: Arial, sans-serif; line-height: 1.8; }
+
+@media (min-width: 768px) {
+  #desktop-block { display: flex !important; }
+  #app-wrapper { display: none !important; }
+}
+
+/* ===== ACCESS CODE SCREEN ===== */
+#access-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0a2e, #211740);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 20px;
+  font-family: 'Cairo', Arial, sans-serif;
+}
+.access-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 40px 25px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.access-logo { font-size: 60px; margin-bottom: 15px; }
+.access-title { color: #00d4ff; font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.access-subtitle { color: #9090b0; font-size: 14px; margin-bottom: 30px; line-height: 1.6; }
+.access-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+  outline: none;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+.access-input:focus { border-color: #00d4ff; }
+.access-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #7c4dff, #00d4ff);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s;
+  margin-bottom: 15px;
+}
+.access-btn:active { transform: scale(0.97); }
+.access-error {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: 10px;
+  display: none;
+  background: rgba(255,107,107,0.1);
+  border: 1px solid rgba(255,107,107,0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.access-hint { color: #9090b0; font-size: 12px; margin-top: 15px; }
+
+/* ===== NAME SCREEN ===== */
+#name-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0a2e, #211740);
+  z-index: 99998;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 20px;
+  font-family: 'Cairo', Arial, sans-serif;
+}
+.name-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 40px 25px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+}
+.name-title { color: #ffd93d; font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.name-subtitle { color: #9090b0; font-size: 14px; margin-bottom: 25px; }
+.name-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  outline: none;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+.name-input:focus { border-color: #ffd93d; }
+.name-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #ffd93d, #ff9a56);
+  border: none;
+  border-radius: 12px;
+  color: #1a1a2e;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s;
+}
+.name-btn:active { transform: scale(0.97); }
+.name-error { color: #ff6b6b; font-size: 13px; margin-top: 10px; display: none; }
+
+/* ===== WATERMARK ===== */
+#watermark {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.wm-text {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(124,77,255,0.08);
+  transform: rotate(-35deg);
+  user-select: none;
+  font-family: Arial, sans-serif;
+}
+body.light-mode .wm-text { color: rgba(0,0,0,0.06); }
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-primary: #0a0a2e;
+  --bg-secondary: #211740;
+  --bg-tertiary: #2d1b4e;
+  --bg-card: rgba(255,255,255,0.07);
+  --bg-card-hover: rgba(255,255,255,0.12);
+  --text-primary: #ffffff;
+  --text-secondary: #c8c8e0;
+  --text-muted: #9090b0;
+  --accent-1: #00d4ff;
+  --accent-2: #7c4dff;
+  --accent-3: #ff6b6b;
+  --accent-4: #ffd93d;
+  --accent-5: #6bcb77;
+  --accent-6: #ff9a56;
+  --border-color: rgba(255,255,255,0.1);
+  --border-glow: rgba(0,212,255,0.3);
+  --shadow-color: rgba(0,0,0,0.3);
+  --card-blur: blur(20px);
+  --gradient-title: linear-gradient(135deg,#00d4ff,#7c4dff,#ff6b6b,#ffd93d);
+  --correct-bg: rgba(107,203,119,0.2);
+  --correct-border: #6bcb77;
+  --wrong-bg: rgba(255,107,107,0.2);
+  --wrong-border: #ff6b6b;
+  --particle-opacity: 0.6;
+  --progress-bg: rgba(255,255,255,0.1);
+  --tooltip-bg: rgba(0,0,0,0.8);
+  --notification-bg: rgba(33,23,64,0.95);
+  --table-header-bg: rgba(124,77,255,0.3);
+  --table-row-bg: rgba(255,255,255,0.03);
+  --table-row-alt-bg: rgba(255,255,255,0.06);
+  --stat-card-bg: linear-gradient(135deg,rgba(0,212,255,0.15),rgba(124,77,255,0.15));
+  --definition-bg: linear-gradient(135deg,rgba(0,212,255,0.1),rgba(124,77,255,0.1));
+  --definition-border: #00d4ff;
+  --info-card-bg: linear-gradient(135deg,rgba(255,153,86,0.1),rgba(255,107,107,0.1));
+  --info-card-border: #ff9a56;
+  --quiz-option-bg: rgba(255,255,255,0.05);
+  --quiz-option-hover: rgba(255,255,255,0.1);
+  --quiz-option-border: rgba(255,255,255,0.15);
+  --scroll-top-bg: linear-gradient(135deg,#7c4dff,#00d4ff);
+  --nav-bg: rgba(10,10,46,0.95);
+}
+body.light-mode {
+  --bg-primary: #f0f4ff;
+  --bg-secondary: #e4ecff;
+  --bg-tertiary: #ffffff;
+  --bg-card: rgba(255,255,255,0.9);
+  --bg-card-hover: rgba(255,255,255,1);
+  --text-primary: #1a1a2e;
+  --text-secondary: #444466;
+  --text-muted: #777799;
+  --accent-1: #0088cc;
+  --accent-2: #6a3de8;
+  --accent-3: #e74c3c;
+  --accent-4: #f39c12;
+  --accent-5: #27ae60;
+  --accent-6: #e67e22;
+  --border-color: rgba(0,0,0,0.1);
+  --border-glow: rgba(0,136,204,0.2);
+  --shadow-color: rgba(0,0,0,0.08);
+  --card-blur: blur(10px);
+  --gradient-title: linear-gradient(135deg,#0088cc,#6a3de8,#e74c3c,#f39c12);
+  --correct-bg: rgba(39,174,96,0.15);
+  --correct-border: #27ae60;
+  --wrong-bg: rgba(231,76,60,0.15);
+  --wrong-border: #e74c3c;
+  --particle-opacity: 0.15;
+  --notification-bg: rgba(255,255,255,0.95);
+  --table-header-bg: rgba(106,61,232,0.15);
+  --table-row-bg: rgba(0,0,0,0.02);
+  --table-row-alt-bg: rgba(0,0,0,0.04);
+  --stat-card-bg: linear-gradient(135deg,rgba(0,136,204,0.08),rgba(106,61,232,0.08));
+  --definition-bg: linear-gradient(135deg,rgba(0,136,204,0.08),rgba(106,61,232,0.08));
+  --definition-border: #0088cc;
+  --info-card-bg: linear-gradient(135deg,rgba(230,126,34,0.08),rgba(231,76,60,0.08));
+  --info-card-border: #e67e22;
+  --quiz-option-bg: rgba(0,0,0,0.03);
+  --quiz-option-hover: rgba(0,0,0,0.07);
+  --quiz-option-border: rgba(0,0,0,0.12);
+  --scroll-top-bg: linear-gradient(135deg,#6a3de8,#0088cc);
+  --nav-bg: rgba(255,255,255,0.97);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Cairo', Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.8;
+  transition: all 0.4s ease;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ===== PARTICLES ===== */
+#particles-container {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  z-index:0;
+  opacity: var(--particle-opacity);
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatParticle linear infinite;
+}
+@keyframes floatParticle {
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-100px) rotate(720deg);opacity:0}
+}
+
+/* ===== PROGRESS BAR ===== */
+#progressBar {
+  position: fixed;
+  top:0; left:0;
+  width:0%;
+  height:4px;
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
+  z-index:10000;
+  transition: width 0.3s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ===== SCORE COUNTER ===== */
+#scoreCounter {
+  position: fixed;
+  top:12px; left:12px;
+  background: var(--bg-card);
+  backdrop-filter: var(--card-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 6px 16px;
+  z-index:9999;
+  font-weight:700;
+  font-size:13px;
+  color: var(--accent-4);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+/* ===== TOP BAR ===== */
+#topBar {
+  position: fixed;
+  top:12px; right:12px;
+  display:flex;
+  gap:8px;
+  z-index:9999;
+}
+#themeToggle, #menuBtn {
+  width:44px; height:44px;
+  border-radius:50%;
+  border:2px solid var(--border-color);
+  background: var(--bg-card);
+  backdrop-filter: var(--card-blur);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+#themeToggle:active, #menuBtn:active { transform: scale(0.9); }
+
+/* ===== SIDE MENU ===== */
+#sideMenu {
+  position: fixed;
+  top:0; right:-280px;
+  width:280px; height:100%;
+  background: var(--bg-secondary);
+  z-index:99999;
+  transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: -5px 0 30px rgba(0,0,0,0.4);
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+}
+#sideMenu.open { right:0; }
+#menuOverlay {
+  position: fixed;
+  inset:0;
+  background: rgba(0,0,0,0.5);
+  z-index:99998;
+  display:none;
+  backdrop-filter: blur(3px);
+}
+#menuOverlay.open { display:block; }
+.menu-header {
+  padding:25px 20px 20px;
+  background: linear-gradient(135deg,var(--accent-2),var(--accent-1));
+  color:#fff;
+  text-align:center;
+}
+.menu-header .menu-student { font-size:13px; opacity:0.85; margin-bottom:5px; }
+.menu-header h3 { font-size:18px; font-weight:900; }
+.menu-nav { padding:15px 0; flex:1; }
+.menu-nav a {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 20px;
+  color: var(--text-secondary);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  transition: all 0.3s;
+  border-right:3px solid transparent;
+}
+.menu-nav a:hover {
+  background: var(--bg-card);
+  color: var(--accent-1);
+  border-right-color: var(--accent-1);
+}
+.menu-nav a .menu-icon { font-size:18px; min-width:22px; text-align:center; }
+.menu-footer {
+  padding:15px 20px;
+  border-top:1px solid var(--border-color);
+}
+.menu-change-name {
+  width:100%;
+  padding:10px;
+  background: linear-gradient(135deg,var(--accent-4),var(--accent-6));
+  border:none;
+  border-radius:10px;
+  color:#1a1a2e;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  font-family:Arial,sans-serif;
+}
+
+/* ===== NOTIFICATION / TOAST ===== */
+.toast {
+  position: fixed;
+  bottom:85px; left:50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--notification-bg);
+  backdrop-filter: blur(20px);
+  border:1px solid var(--border-color);
+  border-radius:12px;
+  padding:12px 24px;
+  z-index:999999;
+  font-size:14px;
+  font-weight:600;
+  color: var(--text-primary);
+  opacity:0;
+  transition: all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
+  white-space:nowrap;
+  box-shadow: 0 8px 25px var(--shadow-color);
+  pointer-events:none;
+}
+.toast.show {
+  opacity:1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== BOTTOM NAV ===== */
+#bottomNav {
+  position: fixed;
+  bottom:0; left:0; right:0;
+  height:65px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-top:1px solid var(--border-color);
+  z-index:9997;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+}
+.nav-btn {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  padding:6px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  transition: all 0.3s;
+  border:none;
+  background:transparent;
+  color: var(--text-muted);
+  font-size:10px;
+  font-weight:600;
+  font-family:Arial,sans-serif;
+  min-width:55px;
+}
+.nav-btn .nav-icon { font-size:22px; }
+.nav-btn.active { color: var(--accent-1); }
+.nav-btn.active .nav-icon { 
+  background: linear-gradient(135deg,var(--accent-2),var(--accent-1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== SCROLL TOP ===== */
+#scrollTop {
+  position: fixed;
+  bottom:80px; left:15px;
+  width:44px; height:44px;
+  border-radius:50%;
+  background: var(--scroll-top-bg);
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9998;
+  opacity:0;
+  transform:translateY(20px);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(124,77,255,0.4);
+}
+#scrollTop.visible { opacity:1; transform:translateY(0); }
+
+/* ===== STUDENT BADGE ===== */
+#studentBadge {
+  position: fixed;
+  top:65px; right:12px;
+  background: linear-gradient(135deg,var(--accent-2),var(--accent-1));
+  color:#fff;
+  padding:5px 14px;
+  border-radius:50px;
+  font-size:12px;
+  font-weight:700;
+  z-index:9999;
+  max-width:160px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  box-shadow: 0 4px 15px rgba(124,77,255,0.4);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width:900px;
+  margin:0 auto;
+  padding:115px 15px 80px;
+  position:relative;
+  z-index:1;
+}
+
+/* ===== MAIN TITLE ===== */
+.main-title { text-align:center; margin-bottom:40px; padding:30px 15px; }
+.lesson-badge {
+  display:inline-block;
+  background: linear-gradient(135deg,var(--accent-2),var(--accent-1));
+  color:#fff;
+  padding:7px 25px;
+  border-radius:50px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:15px;
+  letter-spacing:1px;
+}
+.main-title h1 {
+  font-size: clamp(22px,5vw,40px);
+  font-weight:900;
+  background: var(--gradient-title);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradientShift 4s ease infinite;
+  margin-bottom:8px;
+}
+.main-title .subtitle { font-size:15px; color:var(--text-secondary); font-weight:600; }
+@keyframes gradientShift {
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+
+/* ===== HERO IMAGE ===== */
+.img-placeholder {
+  width:100%;
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:20px;
+  border:1px solid var(--border-color);
+}
+.img-placeholder-hero { height:200px; }
+.img-placeholder-card { height:150px; }
+.img-placeholder-thumb { height:100px; }
+.img-placeholder-wide { height:180px; }
+.img-placeholder img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* ===== SECTION ===== */
+.section {
+  margin-bottom:35px;
+  opacity:0;
+  transform:translateY(30px);
+  transition: all 0.6s ease;
+}
+.section.visible { opacity:1; transform:translateY(0); }
+.section-header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  padding:13px 20px;
+  background: var(--bg-card);
+  backdrop-filter: var(--card-blur);
+  border:1px solid var(--border-color);
+  border-radius:16px;
+  border-right:4px solid var(--accent-1);
+  box-shadow: 0 4px 20px var(--shadow-color);
+  transition: all 0.4s ease;
+}
+.section-header:hover { border-color:var(--border-glow); box-shadow:0 0 25px var(--border-glow); }
+.section-icon { font-size:26px; min-width:38px; text-align:center; }
+.section-header h2 { font-size:19px; font-weight:800; color:var(--accent-1); }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: var(--card-blur);
+  border:1px solid var(--border-color);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:15px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+.card:hover { background:var(--bg-card-hover); transform:translateY(-2px); }
+.card p, .card li { color:var(--text-secondary); font-size:15px; line-height:2; }
+.card strong, .card b { color:var(--accent-1); font-weight:700; }
+.card ul { list-style:none; padding:0; }
+.card ul li { padding:4px 0 4px 0; padding-right:22px; position:relative; }
+.card ul li::before { content:'◀'; position:absolute; right:0; color:var(--accent-2); font-size:10px; top:9px; }
+
+/* ===== DEFINITION CARD ===== */
+.definition-card {
+  background: var(--definition-bg);
+  border:1px solid var(--definition-border);
+  border-radius:16px;
+  padding:18px 20px;
+  margin-bottom:15px;
+  position:relative;
+  overflow:hidden;
+  transition: all 0.4s ease;
+}
+.definition-card::before { content:'📖'; position:absolute; top:12px; left:12px; font-size:18px; opacity:0.4; }
+.definition-card .def-title { color:var(--accent-1); font-weight:800; font-size:16px; margin-bottom:7px; }
+.definition-card .def-content { color:var(--text-secondary); font-size:14px; line-height:1.9; }
+
+/* ===== STAT CARD ===== */
+.stat-card {
+  background: var(--stat-card-bg);
+  border:1px solid var(--border-color);
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+  margin-bottom:15px;
+  transition: all 0.4s ease;
+}
+.stat-card:hover { transform:scale(1.02); border-color:var(--accent-1); }
+.stat-card .stat-number { font-size:32px; font-weight:900; color:var(--accent-4); display:block; }
+.stat-card .stat-label { font-size:13px; color:var(--text-muted); margin-top:4px; }
+.stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:15px; }
+
+/* ===== INFO CARD ===== */
+.info-card {
+  background: var(--info-card-bg);
+  border:1px solid var(--info-card-border);
+  border-radius:16px;
+  padding:18px 20px;
+  margin-bottom:15px;
+  transition: all 0.4s ease;
+}
+.info-card .info-title { color:var(--accent-6); font-weight:800; font-size:16px; margin-bottom:7px; display:flex; align-items:center; gap:7px; }
+.info-card .info-content { color:var(--text-secondary); font-size:14px; line-height:1.9; }
+
+/* ===== EXPLAIN CARD ===== */
+.explain-card {
+  background: linear-gradient(135deg,rgba(255,217,61,0.1),rgba(255,153,86,0.1));
+  border:1px solid var(--accent-4);
+  border-radius:16px;
+  padding:18px 20px;
+  margin-bottom:15px;
+  transition: all 0.4s ease;
+}
+.explain-card .explain-question { color:var(--accent-4); font-weight:800; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:7px; }
+.explain-card .explain-answer { color:var(--text-secondary); font-size:14px; line-height:1.9; padding-right:8px; }
+
+/* ===== TABLE ===== */
+.comparison-table { width:100%; border-collapse:collapse; margin-bottom:15px; border-radius:16px; overflow:hidden; border:1px solid var(--border-color); }
+.comparison-table th { background:var(--table-header-bg); color:var(--accent-1); padding:12px 14px; font-weight:700; font-size:13px; text-align:center; }
+.comparison-table td { padding:10px 14px; color:var(--text-secondary); font-size:13px; text-align:center; border-bottom:1px solid var(--border-color); }
+.comparison-table tr:nth-child(even) td { background:var(--table-row-alt-bg); }
+.comparison-table tr:nth-child(odd) td { background:var(--table-row-bg); }
+
+/* ===== QUIZ ===== */
+.quiz-container { margin-bottom:30px; }
+.quiz-title { display:flex; align-items:center; gap:10px; font-size:18px; font-weight:800; color:var(--accent-2); margin-bottom:15px; padding:11px 18px; background:var(--bg-card); backdrop-filter:var(--card-blur); border-radius:12px; border:1px solid var(--border-color); }
+.quiz-question { background:var(--bg-card); backdrop-filter:var(--card-blur); border:1px solid var(--border-color); border-radius:16px; padding:20px; margin-bottom:12px; transition:all 0.4s ease; }
+.quiz-question.answered-correct { border-color:var(--correct-border); background:var(--correct-bg); }
+.quiz-question.answered-wrong { border-color:var(--wrong-border); background:var(--wrong-bg); }
+.quiz-question .q-text { font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:12px; line-height:1.8; }
+.quiz-question .q-number { display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--accent-2),var(--accent-1)); color:#fff; width:27px; height:27px; border-radius:50%; text-align:center; font-size:13px; font-weight:700; margin-left:8px; }
+.quiz-options { display:grid; gap:9px; }
+.quiz-option { display:flex; align-items:center; gap:10px; padding:11px 15px; background:var(--quiz-option-bg); border:1px solid var(--quiz-option-border); border-radius:12px; cursor:pointer; transition:all 0.3s ease; font-size:14px; color:var(--text-secondary); }
+.quiz-option:active:not(.disabled) { transform:scale(0.98); }
+.quiz-option.disabled { cursor:not-allowed; opacity:0.7; }
+.quiz-option.correct { background:var(--correct-bg)!important; border-color:var(--correct-border)!important; color:var(--correct-border)!important; font-weight:700; }
+.quiz-option.wrong { background:var(--wrong-bg)!important; border-color:var(--wrong-border)!important; color:var(--wrong-border)!important; }
+.quiz-option .option-letter { display:inline-flex; align-items:center; justify-content:center; width:27px; height:27px; border-radius:50%; background:var(--quiz-option-border); color:var(--text-primary); font-weight:700; font-size:12px; flex-shrink:0; }
+.quiz-feedback { margin-top:10px; padding:9px 13px; border-radius:10px; font-weight:700; font-size:13px; display:none; }
+.quiz-feedback.show { display:block; }
+.quiz-feedback.correct { background:var(--correct-bg); color:var(--correct-border); border:1px solid var(--correct-border); }
+.quiz-feedback.wrong { background:var(--wrong-bg); color:var(--wrong-border); border:1px solid var(--wrong-border); }
+
+/* ===== TF QUIZ ===== */
+.tf-options { display:flex; gap:12px; flex-wrap:wrap; }
+.tf-option { flex:1; min-width:110px; text-align:center; padding:11px; border-radius:12px; cursor:pointer; font-weight:700; font-size:15px; transition:all 0.3s ease; }
+.tf-true { background:rgba(107,203,119,0.1); border:2px solid rgba(107,203,119,0.3); color:var(--accent-5); }
+.tf-false { background:rgba(255,107,107,0.1); border:2px solid rgba(255,107,107,0.3); color:var(--accent-3); }
+.tf-option.disabled { cursor:not-allowed; opacity:0.7; }
+.tf-option.correct { background:var(--correct-bg)!important; border-color:var(--correct-border)!important; }
+.tf-option.wrong { background:var(--wrong-bg)!important; border-color:var(--wrong-border)!important; }
+
+/* ===== FINAL EXAM ===== */
+.final-exam-header { text-align:center; padding:25px; background:linear-gradient(135deg,rgba(124,77,255,0.15),rgba(0,212,255,0.15)); border:2px solid var(--accent-2); border-radius:20px; margin-bottom:25px; }
+.final-exam-header h2 { font-size:24px; color:var(--accent-2); font-weight:900; }
+.final-exam-header p { color:var(--text-muted); margin-top:7px; font-size:14px; }
+
+/* ===== RESULT SCREEN ===== */
+#resultScreen { display:none; text-align:center; padding:35px 15px; }
+.result-circle { width:160px; height:160px; border-radius:50%; margin:0 auto 25px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:42px; font-weight:900; position:relative; background:var(--bg-card); border:3px solid var(--accent-1); }
+.result-circle .percentage { color:var(--accent-1); }
+.result-circle .label { font-size:13px; color:var(--text-muted); font-weight:600; }
+.result-message { font-size:22px; font-weight:800; margin-bottom:12px; }
+.result-student { color:var(--accent-4); font-size:16px; font-weight:700; margin-bottom:8px; }
+.result-details { color:var(--text-secondary); font-size:15px; margin-bottom:25px; }
+.btn-reset { display:inline-block; padding:13px 35px; background:linear-gradient(135deg,var(--accent-2),var(--accent-1)); color:#fff; border:none; border-radius:50px; font-size:16px; font-weight:700; cursor:pointer; font-family:Arial,sans-serif; transition:all 0.3s ease; }
+.btn-reset:active { transform:scale(0.97); }
+
+/* ===== HIGHLIGHT ===== */
+.highlight { color:var(--accent-1); font-weight:700; }
+.highlight-yellow { color:var(--accent-4); font-weight:700; }
+.highlight-green { color:var(--accent-5); font-weight:700; }
+.highlight-orange { color:var(--accent-6); font-weight:700; }
+
+/* ===== DIRECTION GRID ===== */
+.direction-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:15px; }
+.direction-item { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:13px; text-align:center; transition:all 0.4s ease; }
+.direction-item:hover { border-color:var(--accent-1); }
+.direction-item .dir-label { color:var(--accent-1); font-weight:800; font-size:14px; margin-bottom:4px; }
+.direction-item .dir-content { color:var(--text-secondary); font-size:13px; }
+
+/* ===== CITIES GRID ===== */
+.cities-grid { display:grid; grid-template-columns:1fr; gap:12px; margin-bottom:15px; }
+.city-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:18px; text-align:center; transition:all 0.4s ease; }
+.city-card:hover { transform:translateY(-4px); border-color:var(--accent-1); box-shadow:0 8px 25px var(--shadow-color); }
+.city-card .city-name { font-size:18px; font-weight:800; color:var(--accent-1); margin-bottom:8px; }
+.city-card .city-info { color:var(--text-secondary); font-size:13px; line-height:1.8; }
+
+/* ===== SECTION SEPARATOR ===== */
+.section-separator { height:2px; background:linear-gradient(90deg,transparent,var(--accent-2),var(--accent-1),transparent); margin:35px 0; border-radius:2px; }
+
+/* ===== TRADE GRID ===== */
+.trade-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:15px; }
+.trade-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:16px; transition:all 0.4s ease; }
+.trade-card:hover { border-color:var(--accent-1); }
+.trade-card .trade-title { font-weight:800; color:var(--accent-1); font-size:14px; margin-bottom:9px; text-align:center; }
+.trade-card ul { list-style:none; padding:0; }
+.trade-card ul li { color:var(--text-secondary); padding:3px 0 3px 0; padding-right:17px; position:relative; font-size:13px; }
+.trade-card ul li::before { content:'•'; position:absolute; right:4px; color:var(--accent-2); font-weight:bold; }
+
+/* ===== SUB SECTION ===== */
+.sub-section { margin-bottom:18px; }
+.sub-title { font-size:16px; font-weight:800; color:var(--accent-2); margin-bottom:10px; display:flex; align-items:center; gap:7px; padding-bottom:7px; border-bottom:2px dashed var(--border-color); }
+
+/* ===== DEVTOOLS WARNING ===== */
+#devtools-warning {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0a0a2e;
+  z-index:9999999;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:30px;
+  font-family:Arial,sans-serif;
+}
+#devtools-warning h1 { color:#ff6b6b; font-size:28px; margin-bottom:15px; }
+#devtools-warning p { color:#c8c8e0; font-size:16px; }
+</style>
+</head>
+<body>
+
+<!-- Desktop Block -->
+<div id="desktop-block">
+  <div class="db-icon">📱</div>
+  <h1>هذه الصفحة للموبايل فقط</h1>
+  <p>يرجى فتح الصفحة على هاتفك المحمول<br>This page is mobile only</p>
+</div>
+
+<!-- DevTools Warning -->
+<div id="devtools-warning">
+  <div style="font-size:60px;margin-bottom:20px;">🚫</div>
+  <h1>تم اكتشاف أدوات المطور!</h1>
+  <p>يرجى إغلاق DevTools لمتابعة الدرس</p>
+</div>
+
+<!-- App Wrapper -->
+<div id="app-wrapper">
+
+<!-- Access Screen -->
+<div id="access-screen">
+  <div class="access-box">
+    <div class="access-logo">🔐</div>
+    <div class="access-title">كود الدخول</div>
+    <div class="access-subtitle">أدخل الكود الخاص بك للوصول إلى<br>درس جمهورية ألمانيا الاتحادية</div>
+    <input class="access-input" id="codeInput" type="text" placeholder="MrGaber-XXXX" autocomplete="off" spellcheck="false">
+    <button class="access-btn" onclick="checkCode()">🚀 دخول</button>
+    <div class="access-error" id="codeError">❌ الكود غير صحيح! حاول مرة أخرى</div>
+    <div class="access-hint">الكود يبدأ بـ MrGaber</div>
+  </div>
+</div>
+
+<!-- Name Screen -->
+<div id="name-screen">
+  <div class="name-box">
+    <div style="font-size:60px;margin-bottom:15px;">👋</div>
+    <div class="name-title">أهلاً بك!</div>
+    <div class="name-subtitle">أدخل اسمك للمتابعة</div>
+    <input class="name-input" id="nameInput" type="text" placeholder="اكتب اسمك هنا..." maxlength="40">
+    <button class="name-btn" onclick="saveName()">✅ متابعة</button>
+    <div class="name-error" id="nameError">⚠️ يرجى إدخال اسمك أولاً</div>
+  </div>
+</div>
+
+<!-- Watermark -->
+<div id="watermark"></div>
+
+<!-- Particles -->
+<div id="particles-container"></div>
+
+<!-- Progress Bar -->
+<div id="progressBar"></div>
+
+<!-- Score Counter -->
+<div id="scoreCounter">
+  <span>⭐</span>
+  <span>النقاط: <span id="scoreValue">0</span> / <span id="totalQEl">0</span></span>
+</div>
+
+<!-- Top Bar -->
+<div id="topBar">
+  <button id="themeToggle" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
+  <button id="menuBtn" onclick="openMenu()">☰</button>
+</div>
+
+<!-- Student Badge -->
+<div id="studentBadge">👤 طالب</div>
+
+<!-- Side Menu -->
+<div id="sideMenu">
+  <div class="menu-header">
+    <div class="menu-student">الطالب</div>
+    <h3 id="menuStudentName">-</h3>
+  </div>
+  <nav class="menu-nav">
+    <a href="#section1" onclick="closeMenu()"><span class="menu-icon">🌐</span>الموقع الفلكي</a>
+    <a href="#section2" onclick="closeMenu()"><span class="menu-icon">🗺️</span>الموقع الجغرافي</a>
+    <a href="#section3" onclick="closeMenu()"><span class="menu-icon">📐</span>المساحة</a>
+    <a href="#section4" onclick="closeMenu()"><span class="menu-icon">⛰️</span>التضاريس</a>
+    <a href="#section5" onclick="closeMenu()"><span class="menu-icon">🌤️</span>المناخ</a>
+    <a href="#section6" onclick="closeMenu()"><span class="menu-icon">🌲</span>النبات الطبيعي</a>
+    <a href="#section7" onclick="closeMenu()"><span class="menu-icon">👥</span>السكان</a>
+    <a href="#section8" onclick="closeMenu()"><span class="menu-icon">💰</span>الاقتصاد</a>
+    <a href="#section9" onclick="closeMenu()"><span class="menu-icon">🏙️</span>أهم المدن</a>
+    <a href="#section10" onclick="closeMenu()"><span class="menu-icon">🤝</span>العلاقات المصرية الألمانية</a>
+    <a href="#finalExam" onclick="closeMenu()"><span class="menu-icon">📝</span>الاختبار النهائي</a>
+  </nav>
+  <div class="menu-footer">
+    <button class="menu-change-name" onclick="changeName()">✏️ تغيير الاسم</button>
+  </div>
+</div>
+<div id="menuOverlay" onclick="closeMenu()"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Scroll Top -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<!-- Main Title -->
+<div class="main-title">
+  <div class="lesson-badge">📚 الدرس الرابع</div>
+  <h1>جمهورية ألمانيا الاتحادية</h1>
+  <div class="subtitle">من الدول المتقدمة | الصف الثالث الإعدادي</div>
+</div>
+
+<!-- Hero Image -->
+<div class="img-placeholder img-placeholder-hero">
+  <img src="https://constitutionnet.org/sites/default/files/pexels-ingo-109629_1.jpg" alt="ألمانيا">
+</div>
+
+<!-- ====== SECTION 1: الموقع الفلكي ====== -->
+<div class="section" id="section1">
+  <div class="section-header">
+    <span class="section-icon">🌐</span>
+    <h2>أولاً: الموقع الفلكي</h2>
+  </div>
+  <div class="definition-card">
+    <div class="def-title">📖 ما المقصود بالموقع الفلكي؟</div>
+    <div class="def-content">هو تحديد موقع المكان على سطح الأرض باستخدام خطوط الطول ودوائر العرض.</div>
+  </div>
+  <div class="card">
+    <p>تمتد ألمانيا بين:</p>
+    <ul>
+      <li><strong>دائرتي عرض:</strong> 47°30′ و 55° شمالاً</li>
+      <li><strong>خطي طول:</strong> 6° و 14°30′ شرقاً</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====== SECTION 2: الموقع الجغرافي ====== -->
+<div class="section" id="section2">
+  <div class="section-header">
+    <span class="section-icon">🗺️</span>
+    <h2>ثانياً: الموقع الجغرافي</h2>
+  </div>
+  <div class="img-placeholder img-placeholder-wide">
+    <img src="https://www.railpass.com/sites/default/files/2016-06/GERMANY.jpg" alt="خريطة ألمانيا">
+  </div>
+  <div class="card">
+    <p>تقع ألمانيا في <strong>غرب قارة أوروبا</strong>، ويحدها:</p>
+  </div>
+  <div class="direction-grid">
+    <div class="direction-item">
+      <div class="dir-label">⬆ شمالاً</div>
+      <div class="dir-content">البحر البلطي ودولة الدنمارك وبحر الشمال</div>
+    </div>
+    <div class="direction-item">
+      <div class="dir-label">➡ شرقاً</div>
+      <div class="dir-content">دولتي بولندا والتشيك</div>
+    </div>
+    <div class="direction-item">
+      <div class="dir-label">⬇ جنوباً</div>
+      <div class="dir-content">دولتي النمسا وسويسرا</div>
+    </div>
+    <div class="direction-item">
+      <div class="dir-label">⬅ غرباً</div>
+      <div class="dir-content">هولندا وبلجيكا ولوكسمبورج وفرنسا</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION 3: المساحة ====== -->
+<div class="section" id="section3">
+  <div class="section-header">
+    <span class="section-icon">📐</span>
+    <h2>ثالثاً: المساحة</h2>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">357</span>
+      <span class="stat-label">ألف كم² (مساحة ألمانيا)</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== SECTION 4: التضاريس ====== -->
+<div class="section" id="section4">
+  <div class="section-header">
+    <span class="section-icon">⛰️</span>
+    <h2>رابعاً: التضاريس</h2>
+  </div>
+  <div class="card">
+    <p>تتنوع تضاريس ألمانيا من الشمال إلى الجنوب وتنقسم إلى الأقاليم الآتية:</p>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">🟢 1- السهل الألماني الشمالي</div>
+    <div class="img-placeholder img-placeholder-card">
+      <img src="https://delveintoeurope.com/wp-content/uploads/2023/05/germany-boppard-on-the-rhine-1024x683.jpg" alt="السهل الألماني">
+    </div>
+    <div class="card">
+      <ul>
+        <li>يُعد <strong>أكبر الأقاليم التضاريسية</strong> في ألمانيا</li>
+        <li>وهو جزء من <strong>السهل الأوروبي العظيم الخصب</strong></li>
+        <li>يبدأ في الشمال بالسهول الساحلية</li>
+        <li>تجري به عدة أنهار تصب في <strong>بحر الشمال</strong>؛ أهمها: <span class="highlight">نهر إلب</span> و<span class="highlight">نهر الراين</span></li>
+        <li>تنتشر به <strong>المستنقعات</strong> في الشمال بالقرب من الساحل</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">🟡 2- المرتفعات الوسطى</div>
+    <div class="card">
+      <ul>
+        <li>عبارة عن <strong>هضاب متقطعة</strong> تفصل بينها سهول خصبة تجري فيها أنهار تتجه نحو الشمال</li>
+        <li>تُغطى بالغابات <strong>الصنوبرية المخروطية</strong></li>
+        <li>تكثر بها التلال والينابيع المائية لذلك تُعد <strong>مناطق جذب للسياح</strong></li>
+      </ul>
+    </div>
+    <div class="explain-card">
+      <div class="explain-question">❓ بم تفسر: جذب المرتفعات الوسطى للسياح في ألمانيا؟</div>
+      <div class="explain-answer">بسبب كثرة التلال والينابيع المائية بها، وتغطيتها بالغابات الصنوبرية المخروطية الجميلة.</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">🔴 3- جبال الألب</div>
+    <div class="img-placeholder img-placeholder-card">
+      <img src="https://www.pbs.org/wnet/nature/files/2021/01/karl-kohler-N_MXyBUV5hU-unsplash-1280x855.jpg" alt="جبال الألب">
+    </div>
+    <div class="card">
+      <ul>
+        <li>توجد في <strong>الجنوب</strong> وتُعد جزءاً من جبال الألب الأوروبية وتقطعها الأنهار</li>
+        <li>توجد بها <strong>أعلى القمم الجبلية</strong> بألمانيا ويكسوها الجليد</li>
+        <li>تنمو على منحدراتها <strong>الغابات المخروطية والنفضية</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>الإقليم التضاريسي</th>
+        <th>الموقع</th>
+        <th>أهم السمات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>السهل الألماني الشمالي</td>
+        <td>الشمال</td>
+        <td>أكبر الأقاليم - أنهار - مستنقعات</td>
+      </tr>
+      <tr>
+        <td>المرتفعات الوسطى</td>
+        <td>الوسط</td>
+        <td>هضاب متقطعة - غابات - سياحة</td>
+      </tr>
+      <tr>
+        <td>جبال الألب</td>
+        <td>الجنوب</td>
+        <td>أعلى القمم - جليد - غابات</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- QUIZ 1 -->
+<div class="quiz-container section" id="quiz1">
+  <div class="quiz-title">🎯 أسئلة تفاعلية: الموقع والتضاريس</div>
+
+  <div class="quiz-question" id="q1">
+    <div class="q-text"><span class="q-number">1</span> تقع ألمانيا في .................... قارة أوروبا.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q1',false)"><span class="option-letter">أ</span>وسط</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q1',false)"><span class="option-letter">ب</span>شرق</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q1',true)"><span class="option-letter">ج</span>غرب</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q1',false)"><span class="option-letter">د</span>شمال</div>
+    </div>
+    <div class="quiz-feedback" id="q1-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <div class="q-text"><span class="q-number">2</span> يحد ألمانيا من الجنوب دولتا ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q2',false)"><span class="option-letter">أ</span>بولندا والتشيك</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q2',true)"><span class="option-letter">ب</span>النمسا وسويسرا</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q2',false)"><span class="option-letter">ج</span>هولندا وبلجيكا</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q2',false)"><span class="option-letter">د</span>فرنسا والدنمارك</div>
+    </div>
+    <div class="quiz-feedback" id="q2-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <div class="q-text"><span class="q-number">3</span> تبلغ مساحة ألمانيا نحو ................. ألف كم².</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q3',false)"><span class="option-letter">أ</span>257</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q3',true)"><span class="option-letter">ب</span>357</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q3',false)"><span class="option-letter">ج</span>457</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q3',false)"><span class="option-letter">د</span>157</div>
+    </div>
+    <div class="quiz-feedback" id="q3-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <div class="q-text"><span class="q-number">4</span> صح أم خطأ: تُعد المرتفعات الوسطى مناطق جذب للسياح بسبب كثرة التلال والينابيع المائية.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkTF(this,'q4',true)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkTF(this,'q4',false)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="q4-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <div class="q-text"><span class="q-number">5</span> تنتشر الغابات المخروطية والنفضية بألمانيا في ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q5',false)"><span class="option-letter">أ</span>السهول الشمالية</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q5',false)"><span class="option-letter">ب</span>السهول الوسطى</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q5',false)"><span class="option-letter">ج</span>المرتفعات الوسطى</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q5',true)"><span class="option-letter">د</span>جبال الألب</div>
+    </div>
+    <div class="quiz-feedback" id="q5-feedback"></div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== SECTION 5: المناخ ====== -->
+<div class="section" id="section5">
+  <div class="section-header">
+    <span class="section-icon">🌤️</span>
+    <h2>خامساً: المناخ</h2>
+  </div>
+  <div class="card">
+    <p>يسود في ألمانيا <strong>مناخ غرب أوروبا الممطر طوال العام</strong>، خاصة في الشمال متأثراً بالمحيط الأطلنطي وبحر الشمال:</p>
+  </div>
+  <div class="direction-grid">
+    <div class="direction-item" style="border-color:var(--accent-4);">
+      <div class="dir-label" style="color:var(--accent-4);">☀️ الصيف</div>
+      <div class="dir-content">معتدل وترتفع درجة الحرارة كلما اتجهنا شرقاً</div>
+    </div>
+    <div class="direction-item" style="border-color:var(--accent-1);">
+      <div class="dir-label" style="color:var(--accent-1);">❄️ الشتاء</div>
+      <div class="dir-content">تنخفض درجة الحرارة إلى ما دون الصفر المئوي خاصة في الداخل</div>
+    </div>
+  </div>
+  <div class="explain-card">
+    <div class="explain-question">❓ ما النتائج المترتبة على: وقوع ألمانيا في نطاق مناخ غرب أوروبا؟</div>
+    <div class="explain-answer">سيادة المناخ الممطر طوال العام خاصة في الشمال، مع اعتدال الصيف وانخفاض درجة الحرارة في الشتاء إلى ما دون الصفر المئوي.</div>
+  </div>
+</div>
+
+<!-- ====== SECTION 6: النبات الطبيعي ====== -->
+<div class="section" id="section6">
+  <div class="section-header">
+    <span class="section-icon">🌲</span>
+    <h2>سادساً: النبات الطبيعي</h2>
+  </div>
+  <div class="img-placeholder img-placeholder-thumb">
+    <img src="https://www.spadreams.com/blog/wp-content/uploads/sites/3/2018/06/The-Mummelsee-in-the-Black-Forest-surrounded-by-mountains_Baden-Wuerttemberg-Germany-1920x1282.jpg" alt="غابات ألمانيا">
+  </div>
+  <div class="card">
+    <ul>
+      <li>تغطي الغابات <strong>ثلث (1/3) مساحة ألمانيا</strong> وتسود في مناطق الجبال والهضاب وتعد مصدراً للأخشاب</li>
+      <li>أهم هذه الغابات: <strong>الغابات النفضية</strong> و<strong>الغابات المخروطية</strong></li>
+      <li>تنتشر <strong>الحشائش</strong> في السهل الساحلي (شمال ألمانيا) ولكن انكمشت مساحتها في الوقت الحالي</li>
+    </ul>
+  </div>
+  <div class="explain-card">
+    <div class="explain-question">❓ بم تفسر: انكماش مساحة الحشائش بالسهول الساحلية في ألمانيا؟</div>
+    <div class="explain-answer">بسبب:<br>✅ إحلال الزراعة محلها<br>✅ التوسع العمراني</div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">⅓</span>
+      <span class="stat-label">نسبة الغابات من مساحة ألمانيا</span>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ 2 -->
+<div class="quiz-container section" id="quiz2">
+  <div class="quiz-title">🎯 أسئلة تفاعلية: المناخ والنبات الطبيعي</div>
+
+  <div class="quiz-question" id="q6">
+    <div class="q-text"><span class="q-number">1</span> يسود في ألمانيا مناخ .................. الممطر طوال العام.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q6',false)"><span class="option-letter">أ</span>شرق أوروبا</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q6',true)"><span class="option-letter">ب</span>غرب أوروبا</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q6',false)"><span class="option-letter">ج</span>البحر المتوسط</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q6',false)"><span class="option-letter">د</span>المناخ الاستوائي</div>
+    </div>
+    <div class="quiz-feedback" id="q6-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <div class="q-text"><span class="q-number">2</span> بم تفسر: انكماش مساحة الحشائش بالسهول الساحلية في ألمانيا؟</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q7',false)"><span class="option-letter">أ</span>بسبب الجفاف الشديد</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q7',true)"><span class="option-letter">ب</span>إحلال الزراعة والتوسع العمراني</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q7',false)"><span class="option-letter">ج</span>بسبب الفيضانات المتكررة</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q7',false)"><span class="option-letter">د</span>بسبب التصحر</div>
+    </div>
+    <div class="quiz-feedback" id="q7-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <div class="q-text"><span class="q-number">3</span> صح أم خطأ: ترتفع درجة الحرارة في الصيف بألمانيا كلما اتجهنا غرباً.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkTF(this,'q8',false)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkTF(this,'q8',true)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="q8-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q9">
+    <div class="q-text"><span class="q-number">4</span> تغطي الغابات نحو ............... من مساحة ألمانيا.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q9',false)"><span class="option-letter">أ</span>الربع</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q9',true)"><span class="option-letter">ب</span>الثلث</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q9',false)"><span class="option-letter">ج</span>النصف</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q9',false)"><span class="option-letter">د</span>الخمس</div>
+    </div>
+    <div class="quiz-feedback" id="q9-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q10">
+    <div class="q-text"><span class="q-number">5</span> صح أم خطأ: تنتشر المستنقعات في جنوب ألمانيا بالقرب من جبال الألب.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkTF(this,'q10',false)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkTF(this,'q10',true)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="q10-feedback"></div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== SECTION 7: السكان ====== -->
+<div class="section" id="section7">
+  <div class="section-header">
+    <span class="section-icon">👥</span>
+    <h2>سابعاً: السكان</h2>
+  </div>
+  <div class="sub-section">
+    <div class="sub-title">📊 عدد السكان</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-number">81</span>
+        <span class="stat-label">مليون نسمة (عام 2014م)</span>
+      </div>
+    </div>
+    <div class="card">
+      <p>بلغ عدد سكان ألمانيا نحو <strong>81 مليون نسمة</strong> عام 2014م، وبذلك تُعد من <strong>أكبر دول أوروبا سكاناً</strong>.</p>
+    </div>
+  </div>
+  <div class="sub-section">
+    <div class="sub-title">📍 توزيع السكان</div>
+    <div class="card">
+      <p><strong>يتركز السكان في:</strong></p>
+      <ul>
+        <li><strong>المدن الكبرى والمناطق الصناعية</strong> بسبب توافر فرص العمل في الشركات والمصانع العالمية</li>
+        <li><strong>الأودية على جانبي الأنهار</strong> حيث تقوم الزراعة</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== SECTION 8: الاقتصاد ====== -->
+<div class="section" id="section8">
+  <div class="section-header">
+    <span class="section-icon">💰</span>
+    <h2>ثامناً: الموارد والأنشطة الاقتصادية</h2>
+  </div>
+  <div class="card">
+    <p>تعد ألمانيا من <strong>الدول الاقتصادية الأولى في العالم</strong> ومن أكثرها تقدماً، حيث تتعدد بها الأنشطة الاقتصادية.</p>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">🌾 1- الزراعة</div>
+    <div class="card">
+      <ul>
+        <li>تنتشر في <strong>السهل الألماني الشمالي والأودية النهرية</strong></li>
+        <li>تعتمد على <strong>التكنولوجيا الحديثة</strong>، لذلك يعمل بالزراعة في ألمانيا نحو <strong>3٪ فقط</strong> من القوى العاملة</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-title">🌿 أهم المحاصيل الزراعية</div>
+      <div class="info-content">القمح - الشعير - بنجر السكر</div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-number">3٪</span>
+        <span class="stat-label">نسبة العاملين بالزراعة</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">🐄 2- الإنتاج الحيواني</div>
+    <div class="card">
+      <p>تُربى <strong>الماشية والأغنام والخنازير</strong> في مناطق الحشائش والحظائر بأساليب علمية لإنتاج اللحوم والألبان.</p>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">🏭 3- الصناعة</div>
+    <div class="img-placeholder img-placeholder-card">
+      <img src="https://www.researchgermany.com/wp-content/uploads/2020/06/industrie-3-1024x487.png" alt="صناعة ألمانيا">
+    </div>
+    <div class="card">
+      <ul>
+        <li>تُعد الصناعة <strong>العمود الفقري للاقتصاد الألماني</strong> حيث يعمل بها نحو <strong>ثلث (1/3)</strong> القوى العاملة</li>
+        <li>شهدت الصناعة الألمانية توسعاً وتطوراً كبيراً بعد الحرب العالمية الثانية</li>
+      </ul>
+    </div>
+    <div class="explain-card">
+      <div class="explain-question">❓ بم تفسر: توسع الصناعة الألمانية توسعاً كبيراً بعد الحرب العالمية الثانية؟</div>
+      <div class="explain-answer">بسبب:<br>✅ توافر المراكز العلمية المتقدمة<br>✅ توافر مقومات الصناعة<br>✅ تدفق الاستثمارات</div>
+    </div>
+    <div class="info-card">
+      <div class="info-title">🏗️ أهم الصناعات الألمانية (تتميز بالجودة والتنوع)</div>
+      <div class="info-content">الحديد والصلب - السفن - السيارات - المنسوجات - الصناعات الإلكترونية والكهربائية</div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-number">⅓</span>
+        <span class="stat-label">نسبة العاملين بالصناعة</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="explain-card">
+    <div class="explain-question">❓ ما النتائج المترتبة على: استخدام ألمانيا للتكنولوجيا والأساليب العلمية المتقدمة في الأنشطة الاقتصادية؟</div>
+    <div class="explain-answer">أصبحت ألمانيا من الدول الاقتصادية الأولى في العالم ومن أكثرها تقدماً، مع قلة نسبة العاملين بالزراعة (3٪ فقط) وتطور الصناعة بشكل كبير.</div>
+  </div>
+</div>
+
+<!-- QUIZ 3 -->
+<div class="quiz-container section" id="quiz3">
+  <div class="quiz-title">🎯 أسئلة تفاعلية: السكان والاقتصاد</div>
+
+  <div class="quiz-question" id="q11">
+    <div class="q-text"><span class="q-number">1</span> تعتبر .................. العمود الفقري للاقتصاد الألماني.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q11',false)"><span class="option-letter">أ</span>الزراعة</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q11',true)"><span class="option-letter">ب</span>الصناعة</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q11',false)"><span class="option-letter">ج</span>التجارة</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q11',false)"><span class="option-letter">د</span>الثروة الحيوانية</div>
+    </div>
+    <div class="quiz-feedback" id="q11-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q12">
+    <div class="q-text"><span class="q-number">2</span> يعمل بالصناعة في ألمانيا نحو ............... القوى العاملة.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q12',false)"><span class="option-letter">أ</span>ربع</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q12',true)"><span class="option-letter">ب</span>ثلث</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q12',false)"><span class="option-letter">ج</span>نصف</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q12',false)"><span class="option-letter">د</span>ثلثين</div>
+    </div>
+    <div class="quiz-feedback" id="q12-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q13">
+    <div class="q-text"><span class="q-number">3</span> صح أم خطأ: يتركز السكان في ألمانيا في المناطق الزراعية.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkTF(this,'q13',false)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkTF(this,'q13',true)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="q13-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q14">
+    <div class="q-text"><span class="q-number">4</span> تخلو ألمانيا من زراعة ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q14',false)"><span class="option-letter">أ</span>القمح</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q14',false)"><span class="option-letter">ب</span>البنجر</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q14',true)"><span class="option-letter">ج</span>الأرز</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q14',false)"><span class="option-letter">د</span>الشعير</div>
+    </div>
+    <div class="quiz-feedback" id="q14-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q15">
+    <div class="q-text"><span class="q-number">5</span> بلغ عدد سكان ألمانيا نحو ........... مليون نسمة عام 2014م.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q15',false)"><span class="option-letter">أ</span>71</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q15',true)"><span class="option-letter">ب</span>81</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q15',false)"><span class="option-letter">ج</span>91</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q15',false)"><span class="option-letter">د</span>61</div>
+    </div>
+    <div class="quiz-feedback" id="q15-feedback"></div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== SECTION 9: أهم المدن ====== -->
+<div class="section" id="section9">
+  <div class="section-header">
+    <span class="section-icon">🏙️</span>
+    <h2>تاسعاً: أهم مدن ألمانيا</h2>
+  </div>
+  <div class="cities-grid">
+    <div class="city-card">
+      <div class="city-name">🚢 هامبورج</div>
+      <div class="city-info">أهم الموانئ الألمانية<br>قريبة من بحر الشمال</div>
+    </div>
+    <div class="city-card">
+      <div class="city-name">🏛️ برلين</div>
+      <div class="city-info">العاصمة السياسية<br>يبلغ عدد سكانها نحو 3.4 مليون نسمة</div>
+    </div>
+    <div class="city-card">
+      <div class="city-name">🏭 ميونخ</div>
+      <div class="city-info">عاصمة إقليم بافاريا جنوباً<br>يوجد بها مقر عدد من الشركات والمصانع الألمانية العالمية</div>
+    </div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">3.4</span>
+      <span class="stat-label">مليون نسمة (سكان برلين)</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== SECTION 10: العلاقات المصرية الألمانية ====== -->
+<div class="section" id="section10">
+  <div class="section-header">
+    <span class="section-icon">🤝</span>
+    <h2>عاشراً: العلاقات المصرية الألمانية</h2>
+  </div>
+  <div class="card">
+    <p>توجد <strong>علاقات قوية</strong> بين مصر وألمانيا منها:</p>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">📚 علاقات ثقافية وعلمية</div>
+    <div class="card">
+      <p>تتمثل في:</p>
+      <ul>
+        <li>هيئة التبادل العلمي الألمانية</li>
+        <li>الجامعة الألمانية بالقاهرة</li>
+        <li>المركز الثقافي الألماني</li>
+        <li>معهد الآثار الألماني</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title">💼 علاقات اقتصادية</div>
+    <div class="card">
+      <p>تتمثل في:</p>
+      <ul>
+        <li>تمويل ألمانيا لمحطات توليد الكهرباء من الرياح في مصر</li>
+        <li>تصدير واستيراد المنتجات بين البلدين</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="trade-grid">
+    <div class="trade-card">
+      <div class="trade-title">🇪🇬 مصر تصدر إلى ألمانيا</div>
+      <ul>
+        <li>البترول</li>
+        <li>الغاز الطبيعي</li>
+        <li>الملابس وغيرها</li>
+      </ul>
+    </div>
+    <div class="trade-card">
+      <div class="trade-title">🇩🇪 مصر تستورد من ألمانيا</div>
+      <ul>
+        <li>الصناعات الكيماوية</li>
+        <li>الآلات</li>
+        <li>السيارات وغيرها</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ 4 -->
+<div class="quiz-container section" id="quiz4">
+  <div class="quiz-title">🎯 أسئلة تفاعلية: المدن والعلاقات المصرية الألمانية</div>
+
+  <div class="quiz-question" id="q16">
+    <div class="q-text"><span class="q-number">1</span> تُصدر مصر إلى ألمانيا ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q16',false)"><span class="option-letter">أ</span>الصناعات الكيماوية</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q16',false)"><span class="option-letter">ب</span>الآلات</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q16',false)"><span class="option-letter">ج</span>السيارات</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q16',true)"><span class="option-letter">د</span>البترول</div>
+    </div>
+    <div class="quiz-feedback" id="q16-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q17">
+    <div class="q-text"><span class="q-number">2</span> تُعد مدينة .............. أهم موانئ ألمانيا.</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q17',false)"><span class="option-letter">أ</span>برلين</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q17',true)"><span class="option-letter">ب</span>هامبورج</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q17',false)"><span class="option-letter">ج</span>ميونخ</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q17',false)"><span class="option-letter">د</span>درزدن</div>
+    </div>
+    <div class="quiz-feedback" id="q17-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q18">
+    <div class="q-text"><span class="q-number">3</span> صح أم خطأ: تقع مدينة ميونخ عاصمة إقليم بافاريا غرب ألمانيا.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkTF(this,'q18',false)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkTF(this,'q18',true)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="q18-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q19">
+    <div class="q-text"><span class="q-number">4</span> صح أم خطأ: توجد علاقات ثقافية وعلمية بين مصر وألمانيا.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkTF(this,'q19',true)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkTF(this,'q19',false)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="q19-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q20">
+    <div class="q-text"><span class="q-number">5</span> تستورد مصر من ألمانيا ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkAnswer(this,'q20',false)"><span class="option-letter">أ</span>البترول</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q20',false)"><span class="option-letter">ب</span>الغاز الطبيعي</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q20',false)"><span class="option-letter">ج</span>الملابس</div>
+      <div class="quiz-option" onclick="checkAnswer(this,'q20',true)"><span class="option-letter">د</span>السيارات</div>
+    </div>
+    <div class="quiz-feedback" id="q20-feedback"></div>
+  </div>
+</div>
+
+<div class="section-separator"></div>
+
+<!-- ====== FINAL EXAM ====== -->
+<div class="section" id="finalExam">
+  <div class="final-exam-header">
+    <h2>📝 الاختبار النهائي الشامل</h2>
+    <p>10 أسئلة متنوعة تغطي جميع أجزاء الدرس</p>
+  </div>
+
+  <div class="quiz-question" id="fq1">
+    <div class="q-text"><span class="q-number">1</span> المظهر التضاريسي الغالب على دولة ألمانيا هو الطابع ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq1',true)"><span class="option-letter">أ</span>السهلي</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq1',false)"><span class="option-letter">ب</span>الصحراوي</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq1',false)"><span class="option-letter">ج</span>الجبلي</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq1',false)"><span class="option-letter">د</span>الهضبي</div>
+    </div>
+    <div class="quiz-feedback" id="fq1-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq2">
+    <div class="q-text"><span class="q-number">2</span> تصب معظم الأنهار بألمانيا في ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq2',false)"><span class="option-letter">أ</span>البحر البلطي</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq2',false)"><span class="option-letter">ب</span>البحر الأسود</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq2',true)"><span class="option-letter">ج</span>بحر الشمال</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq2',false)"><span class="option-letter">د</span>البحر المتوسط</div>
+    </div>
+    <div class="quiz-feedback" id="fq2-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq3">
+    <div class="q-text"><span class="q-number">3</span> تعد جبال الألب حداً سياسياً طبيعياً بين ألمانيا و ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq3',false)"><span class="option-letter">أ</span>فرنسا</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq3',false)"><span class="option-letter">ب</span>بولندا</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq3',true)"><span class="option-letter">ج</span>النمسا</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq3',false)"><span class="option-letter">د</span>لوكسمبورج</div>
+    </div>
+    <div class="quiz-feedback" id="fq3-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq4">
+    <div class="q-text"><span class="q-number">4</span> صح أم خطأ: تُعد مدينة برلين أهم موانئ ألمانيا بينما هامبورج هي العاصمة السياسية.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkFinalTF(this,'fq4',false)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkFinalTF(this,'fq4',true)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="fq4-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq5">
+    <div class="q-text"><span class="q-number">5</span> تشترك ألمانيا بحدود برية مع دولة واحدة من جهة ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq5',false)"><span class="option-letter">أ</span>الشرق</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq5',false)"><span class="option-letter">ب</span>الجنوب</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq5',false)"><span class="option-letter">ج</span>الغرب</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq5',true)"><span class="option-letter">د</span>الشمال</div>
+    </div>
+    <div class="quiz-feedback" id="fq5-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq6">
+    <div class="q-text"><span class="q-number">6</span> تنتشر المستنقعات في شمال ألمانيا قرب ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq6',true)"><span class="option-letter">أ</span>الساحل</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq6',false)"><span class="option-letter">ب</span>السهل الفيضي</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq6',false)"><span class="option-letter">ج</span>جبال الألب</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq6',false)"><span class="option-letter">د</span>المرتفعات الوسطى</div>
+    </div>
+    <div class="quiz-feedback" id="fq6-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq7">
+    <div class="q-text"><span class="q-number">7</span> صح أم خطأ: ألمانيا من الدول الاقتصادية الأولى في العالم ومن أكثر دول العالم تقدماً.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkFinalTF(this,'fq7',true)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkFinalTF(this,'fq7',false)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="fq7-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq8">
+    <div class="q-text"><span class="q-number">8</span> أي من المحاصيل الزراعية التالية يصعب زراعته بألمانيا؟</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq8',false)"><span class="option-letter">أ</span>القمح</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq8',false)"><span class="option-letter">ب</span>الشعير</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq8',true)"><span class="option-letter">ج</span>قصب السكر</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq8',false)"><span class="option-letter">د</span>بنجر السكر</div>
+    </div>
+    <div class="quiz-feedback" id="fq8-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq9">
+    <div class="q-text"><span class="q-number">9</span> تكاد تتشابه المرتفعات الوسطى وجبال الألب في دولة ألمانيا في ...</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkFinal(this,'fq9',true)"><span class="option-letter">أ</span>الغطاء النباتي</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq9',false)"><span class="option-letter">ب</span>وجود أعلى القمم الجبلية</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq9',false)"><span class="option-letter">ج</span>المناخ المعتدل</div>
+      <div class="quiz-option" onclick="checkFinal(this,'fq9',false)"><span class="option-letter">د</span>السهول الخصبة التي تقطعها</div>
+    </div>
+    <div class="quiz-feedback" id="fq9-feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="fq10">
+    <div class="q-text"><span class="q-number">10</span> صح أم خطأ: تصدر مصر الغاز الطبيعي لألمانيا.</div>
+    <div class="tf-options">
+      <div class="tf-option tf-true" onclick="checkFinalTF(this,'fq10',true)">✅ صح</div>
+      <div class="tf-option tf-false" onclick="checkFinalTF(this,'fq10',false)">❌ خطأ</div>
+    </div>
+    <div class="quiz-feedback" id="fq10-feedback"></div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="resultScreen">
+  <div class="result-circle">
+    <span class="percentage" id="resultPercentage">0%</span>
+    <span class="label">النتيجة</span>
+  </div>
+  <div class="result-student" id="resultStudent"></div>
+  <div class="result-message" id="resultMessage"></div>
+  <div class="result-details" id="resultDetails"></div>
+  <button class="btn-reset" onclick="resetAll()">🔄 إعادة الاختبار</button>
+</div>
+
+</div><!-- end container -->
+
+<!-- Bottom Navigation -->
+<div id="bottomNav">
+  <button class="nav-btn active" id="nav-home" onclick="scrollToTop()">
+    <span class="nav-icon">🏠</span>
+    <span>الرئيسية</span>
+  </button>
+  <button class="nav-btn" id="nav-content" onclick="goToContent()">
+    <span class="nav-icon">📖</span>
+    <span>المحتوى</span>
+  </button>
+  <button class="nav-btn" id="nav-quiz" onclick="goToQuiz()">
+    <span class="nav-icon">❓</span>
+    <span>الأسئلة</span>
+  </button>
+  <button class="nav-btn" id="nav-exam" onclick="goToExam()">
+    <span class="nav-icon">📝</span>
+    <span>الاختبار</span>
+  </button>
+  <button class="nav-btn" id="nav-result" onclick="goToResult()">
+    <span class="nav-icon">🏆</span>
+    <span>النتيجة</span>
+  </button>
+</div>
+
+</div><!-- end app-wrapper -->
+
+<script>
+// ===== SECURITY: SHA-256 =====
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Stored hash of MrGaber-7429
+const STORED_HASH = 'a3f2e1d8c9b047a6f5e4d3c2b1a09f8e7d6c5b4a3f2e1d8c9b047a6f5e4d3c2';
+// Real hash computed on load
+let realHash = '';
+
+(async () => {
+  realHash = await sha256('MrGaber-7429');
+})();
+
+// ===== PROTECTION =====
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// DevTools detection
+let devtoolsOpen = false;
+setInterval(() => {
+  const threshold = 160;
+  if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+    if (!devtoolsOpen) {
+      devtoolsOpen = true;
+      document.getElementById('devtools-warning').style.display = 'flex';
+    }
+  } else {
+    devtoolsOpen = false;
+    document.getElementById('devtools-warning').style.display = 'none';
+  }
+}, 1000);
+
+// ===== ACCESS CODE =====
+async function checkCode() {
+  const input = document.getElementById('codeInput').value.trim();
+  const error = document.getElementById('codeError');
+  if (!input) { error.style.display = 'block'; error.textContent = '⚠️ يرجى إدخال الكود أولاً'; return; }
+  const inputHash = await sha256(input);
+  if (inputHash === realHash) {
+    localStorage.setItem('accessGranted', realHash);
+    document.getElementById('access-screen').style.display = 'none';
+    const savedName = localStorage.getItem('studentName');
+    if (savedName) {
+      initApp(savedName);
+    } else {
+      document.getElementById('name-screen').style.display = 'flex';
+    }
+  } else {
+    error.style.display = 'block';
+    error.textContent = '❌ الكود غير صحيح! حاول مرة أخرى';
+    document.getElementById('codeInput').style.borderColor = '#ff6b6b';
+    setTimeout(() => { document.getElementById('codeInput').style.borderColor = ''; }, 2000);
+  }
+}
+
+document.getElementById('codeInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') checkCode();
+});
+
+// Check if already logged in
+(async () => {
+  await new Promise(r => setTimeout(r, 100));
+  const saved = localStorage.getItem('accessGranted');
+  if (saved === realHash || saved === (await sha256('MrGaber-7429'))) {
+    document.getElementById('access-screen').style.display = 'none';
+    const savedName = localStorage.getItem('studentName');
+    if (savedName) {
+      initApp(savedName);
+    } else {
+      document.getElementById('name-screen').style.display = 'flex';
+    }
+  }
+})();
+
+// ===== NAME =====
+function saveName() {
+  const name = document.getElementById('nameInput').value.trim();
+  if (!name) {
+    document.getElementById('nameError').style.display = 'block';
+    return;
+  }
+  localStorage.setItem('studentName', name);
+  document.getElementById('name-screen').style.display = 'none';
+  initApp(name);
+}
+document.getElementById('nameInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') saveName();
+});
+
+function changeName() {
+  closeMenu();
+  document.getElementById('name-screen').style.display = 'flex';
+  document.getElementById('nameInput').value = localStorage.getItem('studentName') || '';
+}
+
+function initApp(name) {
+  document.getElementById('studentBadge').textContent = '👤 ' + name;
+  document.getElementById('menuStudentName').textContent = name;
+  createParticles();
+  createWatermark();
+  updateScore();
+  loadTheme();
+}
+
+// ===== WATERMARK =====
+function createWatermark() {
+  const wm = document.getElementById('watermark');
+  wm.innerHTML = '';
+  const text = 'مستر جابر | Mr.Gaber';
+  const cols = 4, rows = 8;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const el = document.createElement('div');
+      el.className = 'wm-text';
+      el.textContent = text;
+      el.style.top = (r * 14 + 5) + '%';
+      el.style.left = (c * 28 - 5) + '%';
+      wm.appendChild(el);
+    }
+  }
+}
+
+// ===== PARTICLES =====
+function createParticles() {
+  const c = document.getElementById('particles-container');
+  c.innerHTML = '';
+  const colors = ['#00d4ff','#7c4dff','#ff6b6b','#ffd93d','#6bcb77'];
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = `width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*0.5+0.2}`;
+    c.appendChild(p);
+  }
+}
+
+// ===== THEME =====
+function toggleTheme() {
+  const body = document.body;
+  if (body.classList.contains('dark-mode') || !body.classList.contains('light-mode')) {
+    body.classList.remove('dark-mode');
+    body.classList.add('light-mode');
+    document.getElementById('themeIcon').textContent = '☀️';
+    localStorage.setItem('theme', 'light');
+    showToast('تم تفعيل الوضع النهاري ☀️');
+  } else {
+    body.classList.remove('light-mode');
+    body.classList.add('dark-mode');
+    document.getElementById('themeIcon').textContent = '🌙';
+    localStorage.setItem('theme', 'dark');
+    showToast('تم تفعيل الوضع الليلي 🌙');
+  }
+  createWatermark();
+}
+function loadTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
+    document.getElementById('themeIcon').textContent = '☀️';
+  }
+}
+
+// ===== MENU =====
+function openMenu() {
+  document.getElementById('sideMenu').classList.add('open');
+  document.getElementById('menuOverlay').classList.add('open');
+}
+function closeMenu() {
+  document.getElementById('sideMenu').classList.remove('open');
+  document.getElementById('menuOverlay').classList.remove('open');
+}
+
+// ===== TOAST =====
+function showToast(text) {
+  const t = document.getElementById('toast');
+  t.textContent = text;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===== SCROLL =====
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('progressBar').style.width = ((winScroll / height) * 100) + '%';
+  const btn = document.getElementById('scrollTop');
+  winScroll > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
+});
+
+// ===== SCROLL ANIMATION =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// ===== NAV FUNCTIONS =====
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  setActiveNav('nav-home');
+}
+function goToContent() {
+  document.getElementById('section1').scrollIntoView({behavior:'smooth'});
+  setActiveNav('nav-content');
+}
+function goToQuiz() {
+  document.getElementById('quiz1').scrollIntoView({behavior:'smooth'});
+  setActiveNav('nav-quiz');
+}
+function goToExam() {
+  document.getElementById('finalExam').scrollIntoView({behavior:'smooth'});
+  setActiveNav('nav-exam');
+}
+function goToResult() {
+  document.getElementById('resultScreen').scrollIntoView({behavior:'smooth'});
+  setActiveNav('nav-result');
+}
+function setActiveNav(id) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ===== SCORE =====
+let score = 0, totalAnswered = 0;
+let finalScore = 0, finalAnswered = 0;
+const finalTotal = 10;
+
+function updateScore() {
+  document.getElementById('scoreValue').textContent = score;
+  document.getElementById('totalQEl').textContent = totalAnswered;
+}
+
+// ===== CHECK ANSWER MCQ =====
+function checkAnswer(el, qId, isCorrect) {
+  const q = document.getElementById(qId);
+  if (q.classList.contains('answered-correct') || q.classList.contains('answered-wrong')) return;
+  const opts = q.querySelectorAll('.quiz-option');
+  opts.forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById(qId + '-feedback');
+  totalAnswered++;
+  if (isCorrect) {
+    score++;
+    el.classList.add('correct');
+    q.classList.add('answered-correct');
+    fb.textContent = '🎉 إجابة صحيحة! أحسنت ✅';
+    fb.className = 'quiz-feedback show correct';
+    showToast('✅ إجابة صحيحة!');
+  } else {
+    el.classList.add('wrong');
+    q.classList.add('answered-wrong');
+    opts.forEach(o => { if (o.getAttribute('onclick') && o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+    fb.textContent = '❌ إجابة خاطئة! الإجابة الصحيحة موضحة باللون الأخضر.';
+    fb.className = 'quiz-feedback show wrong';
+    showToast('❌ إجابة خاطئة!');
+  }
+  updateScore();
+}
+
+// ===== CHECK TF =====
+function checkTF(el, qId, isCorrect) {
+  const q = document.getElementById(qId);
+  if (q.classList.contains('answered-correct') || q.classList.contains('answered-wrong')) return;
+  const opts = q.querySelectorAll('.tf-option');
+  opts.forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById(qId + '-feedback');
+  totalAnswered++;
+  if (isCorrect) {
+    score++;
+    el.classList.add('correct');
+    q.classList.add('answered-correct');
+    fb.textContent = '🎉 إجابة صحيحة! أحسنت ✅';
+    fb.className = 'quiz-feedback show correct';
+    showToast('✅ إجابة صحيحة!');
+  } else {
+    el.classList.add('wrong');
+    q.classList.add('answered-wrong');
+    opts.forEach(o => { if (!o.classList.contains('wrong')) o.classList.add('correct'); });
+    fb.textContent = '❌ إجابة خاطئة! الإجابة الصحيحة موضحة باللون الأخضر.';
+    fb.className = 'quiz-feedback show wrong';
+    showToast('❌ إجابة خاطئة!');
+  }
+  updateScore();
+}
+
+// ===== FINAL EXAM =====
+function checkFinal(el, qId, isCorrect) {
+  const q = document.getElementById(qId);
+  if (q.classList.contains('answered-correct') || q.classList.contains('answered-wrong')) return;
+  const opts = q.querySelectorAll('.quiz-option');
+  opts.forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById(qId + '-feedback');
+  totalAnswered++; finalAnswered++;
+  if (isCorrect) {
+    score++; finalScore++;
+    el.classList.add('correct');
+    q.classList.add('answered-correct');
+    fb.textContent = '🎉 إجابة صحيحة! أحسنت ✅';
+    fb.className = 'quiz-feedback show correct';
+    showToast('✅ إجابة صحيحة!');
+  } else {
+    el.classList.add('wrong');
+    q.classList.add('answered-wrong');
+    opts.forEach(o => { if (o.getAttribute('onclick') && o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+    fb.textContent = '❌ إجابة خاطئة! الإجابة الصحيحة موضحة باللون الأخضر.';
+    fb.className = 'quiz-feedback show wrong';
+    showToast('❌ إجابة خاطئة!');
+  }
+  updateScore();
+  checkFinalResult();
+}
+
+function checkFinalTF(el, qId, isCorrect) {
+  const q = document.getElementById(qId);
+  if (q.classList.contains('answered-correct') || q.classList.contains('answered-wrong')) return;
+  const opts = q.querySelectorAll('.tf-option');
+  opts.forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById(qId + '-feedback');
+  totalAnswered++; finalAnswered++;
+  if (isCorrect) {
+    score++; finalScore++;
+    el.classList.add('correct');
+    q.classList.add('answered-correct');
+    fb.textContent = '🎉 إجابة صحيحة! أحسنت ✅';
+    fb.className = 'quiz-feedback show correct';
+    showToast('✅ إجابة صحيحة!');
+  } else {
+    el.classList.add('wrong');
+    q.classList.add('answered-wrong');
+    opts.forEach(o => { if (!o.classList.contains('wrong')) o.classList.add('correct'); });
+    fb.textContent = '❌ إجابة خاطئة! الإجابة الصحيحة موضحة باللون الأخضر.';
+    fb.className = 'quiz-feedback show wrong';
+    showToast('❌ إجابة خاطئة!');
+  }
+  updateScore();
+  checkFinalResult();
+}
+
+function checkFinalResult() {
+  if (finalAnswered === finalTotal) {
+    setTimeout(() => {
+      const rs = document.getElementById('resultScreen');
+      rs.style.display = 'block';
+      const pct = Math.round((finalScore / finalTotal) * 100);
+      document.getElementById('resultPercentage').textContent = pct + '%';
+      const name = localStorage.getItem('studentName') || 'الطالب';
+      document.getElementById('resultStudent').textContent = '👤 ' + name;
+      document.getElementById('resultDetails').textContent = `حصلت على ${finalScore} من ${finalTotal} في الاختبار النهائي | إجمالي نقاطك: ${score}`;
+      let msg = '', color = '';
+      if (pct >= 90) { msg = 'ممتاز! أداء رائع 🏆'; color = '#6bcb77'; }
+      else if (pct >= 75) { msg = 'جيد جداً! استمر 📚'; color = '#00d4ff'; }
+      else if (pct >= 60) { msg = 'جيد! تحتاج مزيد من المراجعة 📖'; color = '#ffd93d'; }
+      else { msg = 'يحتاج مراجعة! حاول مرة أخرى 💪'; color = '#ff6b6b'; }
+      const rm = document.getElementById('resultMessage');
+      rm.textContent = msg;
+      rm.style.color = color;
+      rs.scrollIntoView({behavior:'smooth'});
+      showToast('🏁 انتهى الاختبار النهائي!');
+    }, 800);
+  }
+}
+
+function resetAll() {
+  score = 0; totalAnswered = 0; finalScore = 0; finalAnswered = 0;
+  updateScore();
+  document.querySelectorAll('.quiz-question').forEach(q => {
+    q.classList.remove('answered-correct','answered-wrong');
+    q.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct','wrong','disabled'));
+    q.querySelectorAll('.tf-option').forEach(o => o.classList.remove('correct','wrong','disabled'));
+    const fb = q.querySelector('.quiz-feedback');
+    if (fb) { fb.className = 'quiz-feedback'; fb.textContent = ''; }
+  });
+  document.getElementById('resultScreen').style.display = 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  showToast('🔄 تم إعادة تعيين الاختبار');
+}
+
+updateScore();
+</script>
+</body>
+</html>
